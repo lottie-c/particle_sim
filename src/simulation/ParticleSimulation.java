@@ -1,5 +1,6 @@
 package simulation;
 
+import java.awt.Color;
 import java.lang.reflect.InvocationTargetException;
 import javax.swing.SwingUtilities;
 
@@ -32,7 +33,38 @@ public class ParticleSimulation implements Runnable, ParticleEventHandler{
     	}
    
     }
-
+    
+    /**
+     * Constructor for SPL
+     */
+    public ParticleSimulation(String splString){
+    	this("Elastic Collisions in 2D", getSPLarg());
+    }
+    
+    public static ParticlesModel getSPLarg(){
+    	int w  = 600;
+        int h  = 600;
+        int N = 50;
+        Particle[] ps = new Particle[N];
+        for (int i = 0; i < N; i++) {
+            int x = (int) (Math.random() * (w - Particle.BIG)
+                    + Particle.BIG / 2);
+            int y = (int) (Math.random() * (w - Particle.BIG)
+                    + Particle.BIG / 2);
+            double dx = 0, dy = 0;
+            while (dx == 0) {
+                dx = Math.random() * 11 - 5;
+            }
+            while (dy == 0) {
+                dy = Math.random() * 11 - 5;
+            }
+            ps[i] = new Particle(x, y, dx, dy, Particle.BIG, 1, Color.BLUE);
+        }
+        
+        return(new ParticlesModel(w, h, ps));
+    
+    }
+    
     /**
      * Runs the simulation.
      */
