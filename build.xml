@@ -1,22 +1,27 @@
 <project default="main">
 
-	<target name="main" depends="clean, compile, jar">
+	<target name="main" depends="jar"/>
 	
+	<target name="init">
+		<property name="source" value="src"/>
+		<property name="build" value="build"/>
+		<property name="classes" value="build/classes"/>
+		<property name="jar" value="build/jar"/>
 	</target>
-	
-	<target name="clean">
+		
+	<target name="clean" depends="init">
 		<delete dir="build"/>
 	</target>
 	
-	<target name="compile">
-		<mkdir dir="build"/>
-		<mkdir dir="build/classes"/>
-		<javac srcdir="src" destdir="build/classes" />
+	<target name="compile" depends="clean">
+		<mkdir dir="${build}"/>
+		<mkdir dir="${classes}"/>
+		<javac srcdir="${source}" destdir="${classes}" />
 	</target>
 	
-	<target name="jar">
-		<mkdir dir="build/jar"/>
-		<jar destfile="build/jar/SimpleSimulation.jar" basedir="build/classes">
+	<target name="jar" depends="compile">
+		<mkdir dir="${jar}"/>
+		<jar destfile="${jar}/SimpleSimulation.jar" basedir="${classes}">
 			<manifest>
 				<attribute name="Main-Class" value="simulation.SimpleSimulation"/>
 			</manifest>
