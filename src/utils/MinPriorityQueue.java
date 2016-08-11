@@ -3,12 +3,12 @@ import java.util.*;
 
 public class MinPriorityQueue<T extends Comparable<T>> {
     
-	private ArrayList<T> queue;
+	private Vector<T> queue;
    	private int size; //Size of the queue.
 
     	//Constructs empty ArrayList with initial capacity of 1000
     	public MinPriorityQueue() {
-    		this.queue = new ArrayList<T>(1000);
+    		this.queue = new Vector<T>(1000);
     		this.size = 0; 
     	}
 
