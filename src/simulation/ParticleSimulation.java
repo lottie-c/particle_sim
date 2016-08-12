@@ -37,7 +37,7 @@ public class ParticleSimulation implements Runnable, ParticleEventHandler{
     /**
      * Constructor for SPL
      */
-    public ParticleSimulation(String splString){
+    public ParticleSimulation(){
     	this("Elastic Collisions in 2D", getSPLarg());
     }
     
