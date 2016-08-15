@@ -94,6 +94,42 @@ public class ParticleSimulation implements Runnable, ParticleEventHandler{
         }
     }
 
+    /**
+     * Runs the simulation.
+     */
+    @Override
+    public void run(Integer i) {
+
+        try {
+            SwingUtilities.invokeAndWait(screen);
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        
+        int count = 0;
+        while(count < i ){
+       /*While there are events in the queue 
+        * execute them*/
+            while(queue.size()>0){
+                Event event = queue.remove();
+                count++;
+                if(event.isValid()){
+                    double newTime = event.time();
+                    double dt = newTime - time;
+                    time += dt;
+                    /*move particles for the time elapsed 
+                     * between collisions*/
+                    model.moveParticles(dt);
+                    event.happen(this);
+                }
+            }
+        }
+    }
+
+
+
     /*Event tells handler that it has occurred, then the
      * reactTo() function performs other actions 
      * necessary as a result of the event */
