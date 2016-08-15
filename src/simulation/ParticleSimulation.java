@@ -108,12 +108,17 @@ public class ParticleSimulation implements Runnable, ParticleEventHandler{
         }
         
         int count = 0;
-        while(count < i ){
+        
        /*While there are events in the queue 
         * execute them*/
-            while(queue.size()>0){
+        while(queue.size()>0){
+             if(count < i){
                 Event event = queue.remove();
                 count++;
+
+             }else{
+                return;
+             }
                 if(event.isValid()){
                     double newTime = event.time();
                     double dt = newTime - time;
