@@ -115,22 +115,20 @@ public class ParticleSimulation implements Runnable, ParticleEventHandler{
              if(count < i){
                 Event event = queue.remove();
                 count++;
-
-             }else{
-                return;
-             }
                 if(event.isValid()){
                     double newTime = event.time();
                     double dt = newTime - time;
                     time += dt;
                     /*move particles for the time elapsed 
                      * between collisions*/
-                    model.moveParticles(dt);
-                    event.happen(this);
+                     model.moveParticles(dt);                    event.happen(this);
                 }
-            }
+            }else{
+                return;
+             }
         }
     }
+    
 
 
 
