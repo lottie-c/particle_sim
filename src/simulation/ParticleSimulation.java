@@ -97,7 +97,6 @@ public class ParticleSimulation implements Runnable, ParticleEventHandler{
     /**
      * Runs the simulation.
      */
-    @Override
     public void run(Integer i) {
 
         try {
